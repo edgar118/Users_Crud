@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 from backend.config import SessionLocal
 from backend.schemas import User as UserSchema
+from backend.schemas import login
 from backend.schemas import UserList
 from backend.schemas import RequestUser
 
@@ -26,7 +27,7 @@ async def create(
 
 @router.post("/token")
 def login_for_access_token(
-    user: UserSchema,
+    user: login,
     db: Session = Depends(get_db)
     ):
     return crud.access_token(db, user)
